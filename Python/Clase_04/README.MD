@@ -2,6 +2,8 @@
 
 Este archivo contiene información adicional sobre la clase 04 de Python.
 
+![imagen_python](/Python/assets/PythonCodeTitans.png)  
+
 ## Temas Cubiertos
 
 -Conexion a Base de Datos utilizando el modulo PSYCOPG2
