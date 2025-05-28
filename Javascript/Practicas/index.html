@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra Papel o Tijera</title>
+    <script>
+
+        // function numeroAleatorio(min, max) {
+        //     return Math.floor(Math.random() * (max - min + 1)) + min;
+        // }
+        let numeroAleatorio = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+        let jugador;
+        let numMin = 1
+        let numMax = 3
+        var pc = numeroAleatorio(numMin, numMax);
+
+        //Nuevas variables para agregar puntos
+        var puntosJugador = 0;
+        var puntosPC = 0;
+
+
+        //funcion para ejecutar el jeugo
+        let asignarJugador = (valor) => {
+        jugador = valor;
+
+         if (jugador == 1) {
+            alert("Elegiste Piedra");
+        } else if (jugador == 2) {
+            alert("Elegiste Papel");
+        } else if (jugador == 3) {
+            alert("Elegiste Tijera");
+        }
+
+        //Combate
+
+        if(pc == jugador){
+            alert("Empate!!!");
+            pc = numeroAleatorio(numMin, numMax);
+        } else if(jugador == 1 && pc == 3){
+            alert("Ganaste!!!");
+            puntosJugador++;
+            document.getElementById("jugador").textContent = "Puntos Jugador: " + puntosJugador;
+            pc = numeroAleatorio(numMin, numMax);
+        } else if(jugador == 2 && pc == 1){
+            alert("Ganaste!!!");
+            puntosJugador++;
+            document.getElementById("jugador").textContent = "Puntos Jugador: " + puntosJugador;
+            pc = numeroAleatorio(numMin, numMax);
+        } else if(jugador == 3 && pc == 2){
+            alert("Ganaste!!!");
+            puntosJugador++;
+            document.getElementById("jugador").textContent = "Puntos Jugador: " + puntosJugador;
+            pc = numeroAleatorio(numMin, numMax);
+        } else {
+            alert("Perdiste!!!");
+            puntosPC++;
+            document.getElementById("compu").textContent = "Puntos Computadora: " + puntosPC;
+            pc = numeroAleatorio(numMin, numMax);
+        }
+        }
+        
+    </script>
+</head>
+<body>
+    <h1>Piedra, Papel o Tijera</h1>
+
+    <h3>Selecciona un Piedra Papel o Tijera:</h3>
+    <!-- Nuevos Botonoes para Elegir -->
+    <button onclick="asignarJugador(1)">Piedra</button>
+    <button onclick="asignarJugador(2)">Papel</button>
+    <button onclick="asignarJugador(3)">Tijera</button>
+    <hr>
+    <p id="jugador">Puntos Jugador: 0</p>
+    <hr>
+    <p id="compu">Puntos Computadora: 0</p>
+    <hr>
+    <!-- Boton REINICIAR JUEGO -->
+    <button onclick="document.location.reload();">Reiniciar Juego</button>
+    <hr>
+    <h4>Hecho por CODETITANS</h4>
+</body>
+</html>
