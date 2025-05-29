@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Problema de las N-Reinas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f4;
+    }
+    h1 {
+      margin-top: 20px;
+    }
+    .controls {
+      margin: 20px 0;
+    }
+    .chessboard {
+      display: grid;
+      margin: 0 auto;
+      width: fit-content;
+      border: 2px solid #333;
+    }
+    .cell {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    .black {
+      background-color: #769656;
+    }
+    .white {
+      background-color: #eeeed2;
+    }
+    .queen {
+      color: #000;
+    }
+    #solution-info {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Problema de las N-Reinas</h1>
+
+<div class="controls">
+  <label for="n">Valor de N (mínimo 8): </label>
+  <input type="number" id="n" value="8" min="4" />
+  <button onclick="startSolver()">Resolver</button>
+</div>
+
+<div id="solution-info"></div>
+<div class="chessboard" id="chessboard"></div>
+<br>
+<button onclick="showNextSolution()">Siguiente solución</button>
+
+<script>
+  let solutions = [];
+  let currentIndex = 0;
+
+  function isSafe(board, row, col) {
+    for (let i = 0; i < row; i++) {
+      if (
+        board[i] === col ||
+        board[i] - i === col - row ||
+        board[i] + i === col + row
+      ) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function solveNQueens(n) {
+    solutions = [];
+    const board = Array(n).fill(-1);
+
+    function backtrack(row) {
+      if (row === n) {
+        solutions.push([...board]);
+        return;
+      }
+      for (let col = 0; col < n; col++) {
+        if (isSafe(board, row, col)) {
+          board[row] = col;
+          backtrack(row + 1);
+          board[row] = -1;
+        }
+      }
+    }
+
+    backtrack(0);
+  }
+
+  function drawBoard(solution) {
+    const n = solution.length;
+    const board = document.getElementById("chessboard");
+    board.innerHTML = "";
+    board.style.gridTemplateColumns = `repeat(${n}, 40px)`;
+
+    for (let row = 0; row < n; row++) {
+      for (let col = 0; col < n; col++) {
+        const cell = document.createElement("div");
+        const isBlack = (row + col) % 2 === 0;
+        cell.className = "cell " + (isBlack ? "white" : "black");
+        if (solution[row] === col) {
+          cell.innerHTML = "♛";
+          cell.classList.add("queen");
+        }
+        board.appendChild(cell);
+      }
+    }
+  }
+
+  function startSolver() {
+    const n = parseInt(document.getElementById("n").value);
+    if (isNaN(n) || n < 4) {
+      alert("Por favor, ingresa un número mayor o igual a 4.");
+      return;
+    }
+    solveNQueens(n);
+    currentIndex = 0;
+    if (solutions.length === 0) {
+      document.getElementById("solution-info").innerText =
+        `No hay soluciones posibles para N = ${n}`;
+      document.getElementById("chessboard").innerHTML = "";
+    } else {
+      showNextSolution();
+    }
+  }
+
+  function showNextSolution() {
+    if (solutions.length === 0) return;
+    const solution = solutions[currentIndex];
+    drawBoard(solution);
+    document.getElementById("solution-info").innerText =
+      `Solución ${currentIndex + 1} de ${solutions.length} → Índices: [${solution.join(", ")}]`;
+    currentIndex = (currentIndex + 1) % solutions.length;
+  }
+</script>
+
+</body>
+</html>

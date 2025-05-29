@@ -1,0 +1,29 @@
+
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+  }
+  table {
+    border-collapse: collapse;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  td {
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-family: monospace;
+  }
+  .ocupado {
+    background-color: #f5deb3;
+    font-weight: bold;
+  }
+  button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 16px;
+  }
