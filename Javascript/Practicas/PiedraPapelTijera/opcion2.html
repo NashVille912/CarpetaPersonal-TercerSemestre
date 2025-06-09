@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+         <h1>Piedra, Papel, Tijera, Lagarto, Spock</h1>
+        <!-- Nuevos Botonoes para Elegir -->
+         <div class="botones">
+             <button onclick="asignarJugador('Piedra')">🪨</button>
+             <button onclick="asignarJugador('Papel')">📃</button>
+             <button onclick="asignarJugador('Tijera')">✂️</button>
+             <button onclick="asignarJugador('Lagarto')">🦎</button>
+             <button onclick="asignarJugador('Spock')">🖖🏻</button>
+         </div>
+         <div class="puntos">
+             <p id="eleccion-jugador">Jugador Eligio: </p>
+             <p id="eleccion-compu">Computadora Eligio: </p>
+         </div>
+         <h3 id="ronda">Resultado Ronda:</h3>
+            <div class="puntos">
+            <p id="jugador">Puntos Jugador: 0</p>
+            <p id="compu">Puntos Computadora: 0</p>
+        </div>
+        <hr>
+        <!-- Boton REINICIAR JUEGO -->
+         <div>
+             <button onclick="document.location.reload();">Reiniciar Juego</button>
+             <button class="volver" onclick="window.location.href='index.html';">Volver al Inicio</button>
+         </div>
+        <h4>Hecho por CODETITANS</h4>
+    <script src="app2.js"></script>
+</body>
+</html>
